@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ESP32 Engine Shop — Boards, Sensors and Parts</title>
+<style>
+:root{--bg:#f4f8fc;--surface:#fff;--ink:#0b1f3a;--mute:#53647c;--line:#d9e3ee;--navy:#081D3A;--cyan:#12c4e6;--cyan-d:#0a8fb0;--warn:#e5484d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#061326;--surface:#0c2342;--ink:#e8f1fb;--mute:#93a8c4;--line:#1c3a60;--cyan-d:#3fd6f2}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--navy);color:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:21}
+.bar{max-width:1180px;margin:auto;padding:12px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.logo{font-weight:800;font-size:20px;letter-spacing:.2px}.logo b{color:var(--cyan)}
+nav{display:flex;gap:16px;font-size:14px;opacity:.85}nav a{color:#fff;text-decoration:none}
+.search{flex:1;min-width:180px}.search input{width:100%;padding:10px 14px;border-radius:999px;border:1px solid #27466f;background:#0e2b52;color:#fff;font-size:15px}
+.search input::placeholder{color:#8fa7c6}
+.cartbtn{background:var(--cyan);color:#062033;border:0;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer}
+.hero{background:linear-gradient(135deg,#081D3A,#0d3560);color:#fff}
+.hero div{max-width:1180px;margin:auto;padding:48px 20px}
+.hero small{color:var(--cyan);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:8px 0;line-height:1.1}.hero p{max-width:540px;color:#c4d5ea}
+.btn{display:inline-block;background:var(--cyan);color:#062033;padding:11px 20px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:15px}
+main{max-width:1180px;margin:auto;padding:28px 20px 60px}
+h2{margin:0 0 4px;font-size:26px}.sub{color:var(--mute);margin:0 0 18px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:34px}
+.steps a{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:var(--ink)}
+.steps span{color:var(--cyan-d);font-weight:800}.steps em{display:block;color:var(--mute);font-style:normal;font-size:13px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:14px}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+select{margin-left:auto;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ph{height:120px;display:grid;place-items:center;font-size:52px;background:linear-gradient(135deg,#0d3560,#081D3A)}
+.body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tag{font-size:12px;color:var(--cyan-d);font-weight:700;text-transform:uppercase}
+.card h3{margin:0;font-size:16px}.card p{margin:0;color:var(--mute);font-size:13px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.price{font-weight:800;font-size:18px}
+.add{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:600}
+.add:hover{background:var(--cyan-d)}.stock{font-size:12px;color:var(--mute)}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:40px}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:.25s;z-index:50;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#drawer.open{transform:none}
+.dh{padding:16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.dh button{background:none;border:0;color:var(--ink);font-size:24px;cursor:pointer}
+#items{flex:1;overflow:auto;padding:12px 16px}
+.it{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.it div{flex:1;font-size:14px}.it small{color:var(--mute)}
+.q{display:flex;align-items:center;gap:6px}.q button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.df{padding:16px;border-top:1px solid var(--line)}
+.df input{width:100%;padding:9px;margin-bottom:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.tot{display:flex;justify-content:space-between;font-weight:800;margin-bottom:10px}
+#shade{position:fixed;inset:0;background:#0007;z-index:40;display:none}#shade.open{display:block}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;opacity:0;transition:.25s;z-index:60;pointer-events:none}
+#toast.on{opacity:1}
+footer{background:var(--navy);color:#a9bdd6;text-align:center;padding:26px 20px;font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="logo">ESP32 <b>Engine</b> Shop</div>
+  <nav><a href="#shop">Shop</a><a href="#route">Starter route</a></nav>
+  <div class="search"><input id="q" type="search" placeholder="Search boards, sensors, displays…" aria-label="Search products"></div>
+  <button class="cartbtn" id="open">Cart (<span id="cnt">0</span>)</button>
+</div></header>
+
+<section class="hero"><div>
+  <small>Small board. Real possibilities.</small>
+  <h1>Get the parts that make it work.</h1>
+  <p>ESP32 boards, sensors, displays and kits for every guide and project. Pick your parts, add to cart and order.</p>
+  <a class="btn" href="#shop">Shop parts →</a>
+</div></section>
+
+<main>
+  <section id="route">
+    <h2>Beginner route kit list</h2><p class="sub">Five steps, one part at a time. Tap a step to filter.</p>
+    <div class="steps" id="steps"></div>
+  </section>
+  <section id="shop">
+    <h2>All components</h2><p class="sub" id="result"></p>
+    <div class="tools" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+<footer>© 2026 ESP32 Engine Shop · Demo storefront. Prices and stock are placeholders.</footer>
+
+<div id="shade"></div>
+<aside id="drawer" aria-label="Shopping cart">
+  <div class="dh"><strong>Your cart</strong><button id="close" aria-label="Close cart">×</button></div>
+  <div id="items"></div>
+  <div class="df">
+    <div class="tot"><span>Total</span><span id="total">Rs 0</span></div>
+    <input id="name" placeholder="Full name"><input id="phone" placeholder="Phone number"><input id="addr" placeholder="Delivery address">
+    <button class="btn" style="width:100%" id="order">Place order</button>
+  </div>
+</aside>
+<div id="toast"></div>
+
+<script>
+const P=[
+{id:1,n:"ESP32 DevKit V1 (WROOM-32)",c:"Boards",e:"🟦",p:1650,s:40,d:"30-pin dev board with Wi-Fi and Bluetooth.",st:1},
+{id:2,n:"ESP32-S3 DevKit",c:"Boards",e:"🟦",p:2900,s:18,d:"Dual-core S3 with USB and AI instructions.",st:0},
+{id:3,n:"ESP32-CAM with OV2640",c:"Boards",e:"📷",p:2300,s:22,d:"Camera board for streaming and vision builds.",st:0},
+{id:4,n:"Data USB cable (Micro-B)",c:"Power",e:"🔌",p:250,s:90,d:"Data-capable cable for uploading sketches.",st:1},
+{id:5,n:"5 mm LED pack (20 pcs)",c:"Basics",e:"💡",p:120,s:200,d:"Assorted colours for blink and status projects.",st:2},
+{id:6,n:"220 Ω resistor pack (100 pcs)",c:"Basics",e:"🟫",p:100,s:300,d:"1/4 W resistors for LED circuits.",st:2},
+{id:7,n:"Tactile push buttons (10 pcs)",c:"Basics",e:"🔘",p:150,s:150,d:"6 mm buttons for input practice.",st:3},
+{id:8,n:"Breadboard 830 points",c:"Basics",e:"🧱",p:450,s:60,d:"Solderless board for prototyping.",st:1},
+{id:9,n:"Jumper wires 120 pcs",c:"Basics",e:"🧵",p:550,s:70,d:"Male-male, male-female and female-female.",st:1},
+{id:10,n:"DHT11 temperature & humidity",c:"Sensors",e:"🌡️",p:220,s:80,d:"Beginner sensor with a simple one-wire output.",st:4},
+{id:11,n:"DHT22 sensor",c:"Sensors",e:"🌡️",p:650,s:45,d:"Wider range and better accuracy than DHT11.",st:4},
+{id:12,n:"BME280 sensor module",c:"Sensors",e:"🌫️",p:1100,s:35,d:"Temperature, humidity and pressure over I2C.",st:4},
+{id:13,n:"HC-SR04 ultrasonic sensor",c:"Sensors",e:"📡",p:280,s:65,d:"Distance sensing for robots and monitors.",st:4},
+{id:14,n:"SSD1306 0.96″ OLED (I2C)",c:"Displays",e:"🖥️",p:750,s:55,d:"128×64 display for your first message.",st:5},
+{id:15,n:"MAX7219 LED matrix",c:"Displays",e:"🔳",p:850,s:30,d:"8×32 scrolling display module.",st:5},
+{id:16,n:"L298N motor driver",c:"Robotics",e:"⚙️",p:480,s:40,d:"Dual H-bridge for small DC motors.",st:6},
+{id:17,n:"Line follower robot chassis kit",c:"Robotics",e:"🤖",p:3200,s:12,d:"2WD chassis with motors, wheels and sensors.",st:6},
+{id:18,n:"ESP32 beginner starter kit",c:"Kits",e:"🎁",p:4900,s:15,d:"DevKit, breadboard, LEDs, buttons, DHT11 and OLED.",st:0}
+];
+const STEPS=[["01","Arduino IDE setup","Board + cable"],["02","Blink LED","LED, resistor, breadboard"],["03","Button input","Push buttons"],["04","DHT11 sensor","Sensors"],["05","OLED display","Displays"]];
+const CATS=["All",...new Set(P.map(x=>x.c))];
+let cat="All",term="",sort="feat",cart={},stepF=null;
+try{cart=JSON.parse(localStorage.getItem("cart")||"{}")}catch(e){cart={}}
+const $=id=>document.getElementById(id),money=n=>"Rs "+n.toLocaleString("en-PK");
+function save(){try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}}
+function toast(t){const o=$("toast");o.textContent=t;o.classList.add("on");setTimeout(()=>o.classList.remove("on"),1600)}
+function renderChips(){
+  $("chips").innerHTML=CATS.map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("")+
+  `<select id="sort"><option value="feat">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="az">Name A–Z</option></select>`;
+  $("sort").value=sort;
+}
+function renderGrid(){
+  let l=P.filter(x=>(cat==="All"||x.c===cat)&&(stepF===null||x.st===stepF)&&(x.n+x.d+x.c).toLowerCase().includes(term));
+  if(sort==="lo")l.sort((a,b)=>a.p-b.p);if(sort==="hi")l.sort((a,b)=>b.p-a.p);if(sort==="az")l.sort((a,b)=>a.n.localeCompare(b.n));
+  $("result").textContent=l.length+" product"+(l.length===1?"":"s")+(stepF!==null?" for step "+STEPS[stepF-1]?.[0]||"":"");
+  $("grid").innerHTML=l.length?l.map(x=>`<article class="card"><div class="ph">${x.e}</div><div class="body"><span class="tag">${x.c}</span><h3>${x.n}</h3><p>${x.d}</p><span class="stock">${x.s>20?"In stock":"Only "+x.s+" left"}</span><div class="row"><span class="price">${money(x.p)}</span><button class="add" data-id="${x.id}">Add</button></div></div></article>`).join(""):`<div class="empty">No products match your search.</div>`;
+}
+function renderCart(){
+  const ids=Object.keys(cart).filter(k=>P.find(p=>p.id==k));let t=0,n=0;
+  $("items").innerHTML=ids.length?ids.map(k=>{const p=P.find(x=>x.id==k),q=cart[k];t+=p.p*q;n+=q;
+    return `<div class="it"><span style="font-size:26px">${p.e}</span><div>${p.n}<br><small>${money(p.p)}</small></div><div class="q"><button data-m="${k}">−</button>${q}<button data-p="${k}">+</button></div></div>`}).join(""):`<p class="sub" style="padding:20px 0">Your cart is empty.</p>`;
+  $("total").textContent=money(t);$("cnt").textContent=n;
+}
+$("steps").innerHTML=STEPS.map((s,i)=>`<a href="#shop" data-s="${i+1}"><span>${s[0]}</span> <strong>${s[1]}</strong><em>${s[2]}</em></a>`).join("");
+document.addEventListener("click",e=>{
+  const t=e.target;
+  if(t.dataset.c){cat=t.dataset.c;stepF=null;renderChips();renderGrid()}
+  const st=t.closest("[data-s]");if(st){const i=+st.dataset.s;stepF=stepF===i?null:i;cat="All";renderChips();renderGrid()}
+  if(t.dataset.id){cart[t.dataset.id]=(cart[t.dataset.id]||0)+1;save();renderCart();toast("Added to cart")}
+  if(t.dataset.p){cart[t.dataset.p]++;save();renderCart()}
+  if(t.dataset.m){if(--cart[t.dataset.m]<=0)delete cart[t.dataset.m];save();renderCart()}
+});
+document.addEventListener("change",e=>{if(e.target.id==="sort"){sort=e.target.value;renderGrid()}});
+$("q").addEventListener("input",e=>{term=e.target.value.toLowerCase().trim();renderGrid()});
+const dr=o=>{$("drawer").classList.toggle("open",o);$("shade").classList.toggle("open",o)};
+$("open").onclick=()=>dr(true);$("close").onclick=()=>dr(false);$("shade").onclick=()=>dr(false);
+$("order").onclick=()=>{
+  if(!Object.keys(cart).length)return toast("Your cart is empty");
+  if(!$("name").value.trim()||!$("phone").value.trim()||!$("addr").value.trim())return toast("Fill in name, phone and address");
+  cart={};save();renderCart();["name","phone","addr"].forEach(i=>$(i).value="");dr(false);toast("Order placed. We’ll confirm by phone.");
+};
+renderChips();renderGrid();renderCart();
+</script>
+</body>
+</html>
