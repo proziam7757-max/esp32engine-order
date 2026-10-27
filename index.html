@@ -106,8 +106,8 @@ footer{background:var(--navy);color:#a9bdd6;text-align:center;padding:26px 20px;
   <section id="shop">
     <h2>All components</h2><p class="sub" id="result"></p>
     <div class="ai-panel">
-      <div><strong>AI Product Scout</strong><p>Finds new ESP32/electronics product ideas and adds them to this catalog.</p></div>
-      <button class="ai-button" id="aiDiscover">Find & add products with AI</button>
+      <div><strong>AI Product Scout</strong><p>AI checks for new ESP32/electronics product ideas daily using GitHub Actions.</p></div>
+      <button class="ai-button" id="aiDiscover">Refresh AI product suggestions</button>
       <div class="ai-status" id="aiStatus" role="status">Automatic discovery runs every 24 hours when enabled on your server.</div>
     </div>
     <div class="tools" id="chips"></div>
@@ -245,19 +245,31 @@ $("order").onclick=()=>{
   cart={};save();renderCart();["name","phone","addr"].forEach(i=>$(i).value="");dr(false);toast("Order placed. We’ll confirm by phone.");
 };
 async function loadAiProducts(){
-  try{const r=await fetch('/api/products');if(!r.ok)return;const data=await r.json();mergeAiProducts(data.products||[])}catch(e){/* Static-file preview works without the optional AI server. */}
+  try{
+    const r=await fetch('./products.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const data=await r.json();
+    mergeAiProducts(Array.isArray(data)?data:(data.products||[]));
+    $("aiStatus").textContent="Catalog refreshed. AI product suggestions are generated automatically once a day by GitHub Actions.";
+  }catch(e){
+    $("aiStatus").textContent="Could not load products.json. Check that it exists in the repository root.";
+  }
 }
 function mergeAiProducts(items){
-  const names=new Set(P.map(x=>x.n.toLowerCase()));
+  const names=new Set(P.map(x=>String(x.n||"").toLowerCase()));
   for(const x of items){if(!x||!x.n||names.has(x.n.toLowerCase()))continue;P.push({...x,aiSuggested:true,k:x.k||'ai-product',st:0,s:0});names.add(x.n.toLowerCase())}
   CATS=["All",...new Set(P.map(x=>x.c))];renderChips();renderGrid();renderCart();
 }
 $("aiDiscover").addEventListener("click",async()=>{
-  const token=prompt("Enter your shop admin token (set ADMIN_TOKEN on the server):");if(!token)return;
-  const btn=$("aiDiscover"),status=$("aiStatus");btn.disabled=true;status.textContent="AI is checking for new product ideas…";
-  try{const r=await fetch('/api/ai-discover',{method:'POST',headers:{'Content-Type':'application/json','x-admin-token':token},body:JSON.stringify({existingProducts:P.map(x=>x.n)})});const data=await r.json();if(!r.ok)throw new Error(data.error||'AI discovery failed');mergeAiProducts(data.products||[]);status.textContent=`Added ${data.added||0} new product suggestion(s). Verify supplier, price and stock before selling.`;toast(`AI added ${data.added||0} product suggestion(s)`)}catch(err){status.textContent='Could not run AI discovery: '+err.message+' — make sure the shop server is running.'}finally{btn.disabled=false}
+  const btn=$("aiDiscover"),status=$("aiStatus");
+  btn.disabled=true;status.textContent="Refreshing the published AI product catalog…";
+  try{
+    await loadAiProducts();
+    toast("Product catalog refreshed. To run AI now, open GitHub → Actions → AI product discovery → Run workflow.");
+  }finally{btn.disabled=false}
 });
-renderChips();renderGrid();renderCart();loadAiProducts();
+
 </script>
 </body>
 </html>
+
