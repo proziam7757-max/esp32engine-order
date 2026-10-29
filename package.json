@@ -1,8 +1,0 @@
-{
-  "name": "esp32-engine-ai-shop",
-  "version": "1.0.0",
-  "private": true,
-  "description": "ESP32 Engine Shop with server-side AI product suggestions",
-  "scripts": {"start": "node server.js"},
-  "engines": {"node": ">=18"}
-}
