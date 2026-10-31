@@ -1,3 +1,0 @@
-30-pin ESP32 development board with WiFi and Bluetooth, dual core 240 MHz.
-Micro-USB, CP2102 USB to serial.
-Sample product: edit or delete this folder.

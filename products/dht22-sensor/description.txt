@@ -1,2 +1,0 @@
-Digital temperature and humidity sensor.
-3.3V to 5V supply.
