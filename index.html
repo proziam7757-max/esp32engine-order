@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- EDIT: shop name shows on the browser tab -->
+<title>Your Shop | Electronics parts and chat with sellers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#081d3a; --blue:#2f6bff; --sky:#eaf1ff; --bg:#f4f7fc; --ink:#13243d; --muted:#5a6b82; --line:#dbe4f0; --ok:#12a56b; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+  button, input { font:inherit; }
+  :focus-visible { outline:3px solid var(--blue); outline-offset:2px; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 1.25rem; }
+
+  header { background:var(--navy); color:#fff; }
+  header .wrap { display:flex; align-items:center; justify-content:space-between; padding-top:1rem; padding-bottom:1rem; }
+  .logo { font-weight:800; font-size:1.25rem; letter-spacing:-.01em; }
+  .chatbtn { background:rgba(255,255,255,.12); color:#fff; border:0; border-radius:999px; padding:.55rem 1.1rem; cursor:pointer; font-weight:600; }
+  .chatbtn:hover { background:rgba(255,255,255,.22); }
+  .badge { background:var(--blue); border-radius:999px; padding:0 .45rem; margin-left:.4rem; font-size:.85rem; }
+
+  .hero { background:var(--navy); color:#fff; padding:2.5rem 0 3.5rem; }
+  .hero h1 { font-size:clamp(2rem,6vw,3.4rem); font-weight:800; line-height:1.08; letter-spacing:-.03em; max-width:18ch; }
+  .hero p { color:#b8c8e0; margin:1rem 0 1.75rem; max-width:48ch; font-size:1.1rem; }
+  .search { display:flex; max-width:560px; background:#fff; border-radius:999px; padding:.35rem; }
+  .search input { flex:1; border:0; padding:.6rem 1.1rem; border-radius:999px; background:transparent; color:var(--ink); min-width:0; }
+
+  .chips { display:flex; gap:.6rem; flex-wrap:wrap; margin:1.75rem 0 1.25rem; }
+  .chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:.45rem 1rem; cursor:pointer; font-weight:600; color:var(--muted); }
+  .chip[aria-pressed="true"] { background:var(--navy); border-color:var(--navy); color:#fff; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.1rem; padding-bottom:3rem; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; }
+  .frame { background:var(--sky); overflow:hidden; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.85rem; }
+  .frame img { width:100%; height:100%; object-fit:cover; display:block; }
+  .tile { width:100%; aspect-ratio:4/3; }
+  .thumb { width:48px; height:48px; border-radius:10px; flex:none; font-size:.65rem; text-align:center; }
+  .body { padding:1rem 1.1rem 1.2rem; display:flex; flex-direction:column; gap:.3rem; flex:1; }
+  .cat { color:var(--blue); font-size:.85rem; font-weight:600; }
+  .name { font-weight:600; font-size:1.05rem; line-height:1.3; }
+  .price { font-weight:800; font-size:1.25rem; color:var(--ok); margin-top:.2rem; }
+  .seller { color:var(--muted); font-size:.9rem; }
+  .btn { margin-top:auto; background:var(--blue); color:#fff; border:0; border-radius:999px; padding:.7rem 1rem; font-weight:600; cursor:pointer; }
+  .btn:hover { background:#1f55d6; }
+  .empty { grid-column:1/-1; color:var(--muted); padding:2rem 0; }
+
+  /* chat drawer */
+  .shade { position:fixed; inset:0; background:rgba(8,29,58,.5); display:none; z-index:10; }
+  .shade.open { display:block; }
+  .drawer { position:fixed; top:0; right:0; bottom:0; width:min(420px,100%); background:#fff; z-index:11; display:none; flex-direction:column; }
+  .drawer.open { display:flex; }
+  .dhead { background:var(--navy); color:#fff; padding:1rem 1.1rem; display:flex; align-items:center; gap:.8rem; }
+  .dhead .t { flex:1; min-width:0; }
+  .dhead .t b { display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .dhead .t span { color:#b8c8e0; font-size:.9rem; }
+  .x { background:transparent; border:0; color:#fff; font-size:1.5rem; cursor:pointer; line-height:1; }
+  .notice { background:var(--sky); color:var(--muted); font-size:.85rem; padding:.6rem 1.1rem; }
+  .msgs { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.5rem; background:var(--bg); }
+  .msg { max-width:80%; padding:.6rem .9rem; border-radius:16px; background:var(--blue); color:#fff; align-self:flex-end; overflow-wrap:anywhere; }
+  .hint { color:var(--muted); text-align:center; margin:auto; max-width:30ch; }
+  .send { display:flex; gap:.5rem; padding:.8rem; border-top:1px solid var(--line); }
+  .send input { flex:1; border:1px solid var(--line); border-radius:999px; padding:.65rem 1rem; min-width:0; }
+  .send button { background:var(--blue); color:#fff; border:0; border-radius:999px; padding:0 1.2rem; font-weight:600; cursor:pointer; }
+  .convo { width:100%; text-align:left; background:#fff; border:1px solid var(--line); border-radius:14px; padding:.8rem 1rem; cursor:pointer; display:flex; gap:.8rem; align-items:center; }
+  .convo .ic { font-size:1.8rem; }
+  .convo small { color:var(--muted); display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:240px; }
+
+  .desc { color:var(--muted); font-size:.88rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .price.ask { color:var(--muted); font-size:1rem; font-weight:600; }
+  .row { display:flex; gap:.5rem; margin-top:auto; }
+  .row .btn { margin-top:0; flex:1; padding:.7rem .5rem; }
+  .btn.alt { background:var(--sky); color:var(--blue); }
+  .btn.alt:hover { background:#d6e3ff; }
+  .nav { display:flex; gap:.5rem; }
+  .cartline { background:#fff; border:1px solid var(--line); border-radius:14px; padding:.7rem .9rem; display:flex; gap:.7rem; align-items:center; }
+  .cartline .ic { font-size:1.6rem; }
+  .cartline .nm { flex:1; min-width:0; font-weight:600; font-size:.95rem; }
+  .cartline .nm small { display:block; color:var(--muted); font-weight:400; }
+  .qty { display:flex; align-items:center; gap:.4rem; }
+  .qty button { width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:#fff; cursor:pointer; font-weight:700; }
+  .total { font-weight:800; font-size:1.2rem; padding:.3rem .2rem; display:flex; justify-content:space-between; }
+  .co { padding:.8rem; border-top:1px solid var(--line); display:grid; gap:.5rem; }
+  .co input { border:1px solid var(--line); border-radius:12px; padding:.6rem .9rem; min-width:0; }
+  .co .go { background:var(--ok); color:#fff; border:0; border-radius:999px; padding:.8rem; font-weight:600; cursor:pointer; }
+  footer { background:var(--navy); color:#b8c8e0; padding:1.5rem 0; font-size:.95rem; }
+  @media (prefers-reduced-motion:no-preference) { .card { transition:transform .15s; } .card:hover { transform:translateY(-3px); } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <!-- EDIT: your shop name -->
+    <div class="logo">Your Shop</div>
+    <div class="nav">
+      <button class="chatbtn" id="openCart">Cart <span class="badge" id="cartCount">0</span></button>
+      <button class="chatbtn" id="openList">Chats <span class="badge" id="count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Find electronics parts. Chat with the seller.</h1>
+    <p>Boards, sensors, displays and tools. Ask about stock and price before you buy.</p>
+    <div class="search"><input id="q" type="search" placeholder="Search ESP32, Arduino, sensor..." aria-label="Search products"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer><div class="wrap">&copy; 2026 Your Shop. All rights reserved.</div></footer>
+
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-label="Chat"></aside>
+
+<script>
+/* ===== 0. EDIT YOUR WHATSAPP NUMBER =====
+   Orders are sent to this number. Use the country code, no + and no spaces.
+   Example for Pakistan: 923001234567 */
+const OWNER_WHATSAPP = "923366665597";
+
+/* ===== 1. EDIT YOUR SHOP AND PRODUCTS HERE =====
+   Seller name and city are set once and used for every product. */
+const SELLER = "Ziam";
+const CITY = "Multan";
+const MARKUP = 100; // Rs added on top of every price in the list below
+
+/* To add a product, copy one line and put it at the END of the list.
+   Format: ["Product name", "Category", price, "picture-file.png", "Short description"],
+   PRICE: write the Digilog price as a plain number (1450, not 1,450). The site
+   adds MARKUP (set above) to it automatically, so customers see Digilog price + MARKUP.
+   Use 0 if you have not set a price yet. The product then shows "Price on request"
+   and customers can chat with you about it, but cannot add it to the cart.
+   PICTURE: leave it as "" and the site looks for a file named after the product,
+   all lowercase with dashes, in the "images" folder. Example: "Arduino Uno R3"
+   looks for images/arduino-uno-r3.png. See image-names.txt for every file name.
+   Or write your own file name there, or a full web address starting with https://. */
+const list = [
+  ["Arduino Uno R3", "Microcontrollers", 1770,"", "The quintessential beginner microcontroller board."],
+  ["Arduino Mega 2560 R3", "Microcontrollers", 0, "", "Features extra GPIO pins and hardware serial ports for heavy-duty setups."],
+  ["NodeMCU V3 (ESP8266)", "Microcontrollers", 0, "", "An affordable, older Wi-Fi-enabled board perfect for simpler IoT builds."],
+  ["Raspberry Pi Pico W", "Microcontrollers", 0, "", "Dual-core ARM Cortex-M0+ board featuring onboard Wi-Fi."],
+  ["ESP32-CAM", "Microcontrollers", 0, "", "A tiny variant combining an ESP32 microchip with an OV2640 camera lens."],
+  ["STM32 \"Blue Pill\" (STM32F103C8T6)", "Microcontrollers", 0, "", "A fast 32-bit ARM processor widely preferred for advanced real-time automation."],
+  ["Arduino Pro Mini", "Microcontrollers", 0, "", "A highly compact, stripped-down Arduino format engineered for low-profile enclosures."],
+  ["Arduino Leonardo", "Microcontrollers", 0, "", "An ATmega32u4 board that natively emulates a USB keyboard or mouse."],
+  ["Wemos D1 Mini", "Microcontrollers", 0, "", "A pocket-sized ESP8266 development platform."],
+  ["Teensy 4.1", "Microcontrollers", 0, "", "A high-speed microcontroller used for heavy data or audio calculations."],
+  ["ESP32-S3 DevKit", "Microcontrollers", 0, "", "Next-gen ESP32 variant supporting vector instructions for on-device AI workloads."],
+  ["ESP32-C3 DevKit", "Microcontrollers", 0, "", "RISC-V-based single-core Wi-Fi/Bluetooth board."],
+  ["ATmega328P-PU IC", "Microcontrollers", 0, "", "The bare microcontroller chip used to build custom DIY circuit footprints."],
+  ["ATtiny85", "Microcontrollers", 0, "", "An ultra-small, inexpensive 8-pin microcontroller for minimalist devices."],
+  ["DHT11", "Environmental Sensors", 0, "", "Common, budget-friendly digital temperature and humidity sensor."],
+  ["DHT22", "Environmental Sensors", 0, "", "A higher-precision drop-in alternative to the DHT11."],
+  ["BMP280", "Environmental Sensors", 0, "", "A barometric pressure and temperature sensor (the BME280's sibling without a humidity reader)."],
+  ["BME680", "Environmental Sensors", 0, "", "A high-end relative of the BME280 that includes gas and indoor air quality tracking."],
+  ["DS18B20 Probe", "Environmental Sensors", 0, "", "A sealed, waterproof digital temperature probe perfect for liquids."],
+  ["LM35", "Environmental Sensors", 0, "", "An analog linear temperature sensor."],
+  ["MQ-2", "Environmental Sensors", 0, "", "Gas sensor module calibrated for methane, butane, LPG, and smoke."],
+  ["MQ-7", "Environmental Sensors", 0, "", "Specialized electrochemical module tuned to look for dangerous carbon monoxide leaks."],
+  ["MQ-135", "Environmental Sensors", 0, "", "Air quality sensor responding to benzene, alcohol, and generic smoke pollution."],
+  ["Soil Moisture Sensor", "Environmental Sensors", 0, "", "Two-pronged resistive probe deployed to trigger automated watering valves."],
+  ["Raindrop Sensor Board", "Environmental Sensors", 0, "", "Grid-style sensor that registers falling water droplets."],
+  ["NTC Thermistor", "Environmental Sensors", 0, "", "Small thermal resistor used for simple heat thresholds."],
+  ["HC-SR04", "Motion & Distance", 0, "", "Ubiquitous ultrasonic transducer used to measure distance via sound echoes."],
+  ["HC-SR501 PIR", "Motion & Distance", 0, "", "Infrared motion-detection sensor tailored to detect humans or animals."],
+  ["MPU6050", "Motion & Distance", 0, "", "6-axis system delivering integrated accelerometer and gyroscope orientation tracking."],
+  ["IR Obstacle Avoidance Module", "Motion & Distance", 0, "", "Emits and detects infrared light to catch immediate obstacles."],
+  ["TTP223", "Motion & Distance", 0, "", "Solid-state capacitive touch button module."],
+  ["RCW-0006", "Motion & Distance", 0, "", "A compact alternative ultrasonic sensor built for low-voltage circuits."],
+  ["RCWL-0516", "Motion & Distance", 0, "", "Microwave radar sensor that reads motion directly through plastic or drywall barriers."],
+  ["Vibration Sensor (SW-420)", "Motion & Distance", 0, "", "Spring-based switch that outputs a trigger pulse when bumped."],
+  ["Rotary Encoder (KY-040)", "Motion & Distance", 0, "", "Digital interface knob allowing 360-degree interactive menus."],
+  ["Tilt Ball Switch", "Motion & Distance", 0, "", "Simple capsule enclosing a rolling metal ball to indicate orientation flips."],
+  ["Photoelectric Proximity Switch", "Motion & Distance", 0, "", "Industrial-style beam sensor utilized to track passing machinery."],
+  ["Flame Sensor Module", "Motion & Distance", 0, "", "Specialized photodiode sensitive to infrared wavelengths found in open flames."],
+  ["LDR (Light Dependent Resistor)", "Light, Sound & Biometric", 0, "", "Photoresistor used to check for basic ambient daylight."],
+  ["BH1750", "Light, Sound & Biometric", 0, "", "Digital ambient light level sensor providing accurate lux measurements over I2C."],
+  ["Sound Detector Module", "Light, Sound & Biometric", 0, "", "Onboard microphone linked to an op-amp for sound threshold detection."],
+  ["MAX30102", "Light, Sound & Biometric", 0, "", "High-sensitivity biometric sensor measuring pulse rate and blood oxygen levels."],
+  ["TCS3200 Color Sensor", "Light, Sound & Biometric", 0, "", "Direct color-matching array outputting corresponding square wave frequencies."],
+  ["KY-038 Microphone", "Light, Sound & Biometric", 0, "", "Small audio module for clap-switches and basic loud sound triggers."],
+  ["0.96-inch OLED (SSD1306)", "Displays & LEDs", 0, "", "Crisp, compact screen utilizing an I2C connection to map graphics."],
+  ["LCD 1602 (With I2C Backpack)", "Displays & LEDs", 0, "", "Industry-standard text layout offering 2 lines of 16 characters each."],
+  ["TM1637 4-Digit Display", "Displays & LEDs", 0, "", "Segmented LED clock display module that saves pins via a custom 2-wire setup."],
+  ["MAX7219 8x8 LED Matrix", "Displays & LEDs", 0, "", "Cascading dot display framework widely scaled for retro tickertapes."],
+  ["Nokia 5110 LCD", "Displays & LEDs", 0, "", "Classic low-power pixel grid screen ideal for outdoor data reading."],
+  ["2.4-inch TFT LCD Touch Display", "Displays & LEDs", 0, "", "Full-color high-resolution dashboard panel."],
+  ["WS2812B NeoPixel Strip", "Displays & LEDs", 0, "", "Digitally addressable RGB LED lights controlled via a single wire pin."],
+  ["0.91-inch OLED Display", "Displays & LEDs", 0, "", "Slim 128x32 display used where space is highly constrained."],
+  ["16x2 Character LCD", "Displays & LEDs", 0, "", "Standalone alphanumeric text module."],
+  ["5mm RGB LED", "Displays & LEDs", 0, "", "Through-hole color LED featuring shared anode or cathode leads."],
+  ["TP4056 Lithium Charger", "Power & Battery", 50,"","Standard compact board for charging 3.7V lithium-polymer or lithium-ion cells."],
+  ["3S 20A BMS Board", "Power & Battery", 175,"", "Charge management circuit handling multiple balanced lithium cells."],
+  ["LM2596 Buck Converter", "Power & Battery", 0, "", "Efficient step-down voltage regulator featuring an adjustment dial."],
+  ["XL6009 Boost Converter", "Power & Battery", 0, "", "Step-up voltage module used to scale lower inputs higher."],
+  ["AMS1117 3.3V Regulator", "Power & Battery", 0, "", "Small SMD power chip dropping 5V feeds down to safe 3.3V IoT logic rails."],
+  ["18650 Battery Shield", "Power & Battery", 0, "", "Expansion dock converting battery power into standard 5V and 3.3V header breakouts."],
+  ["9V Battery Snap Connector", "Power & Battery", 30,"","Heavy plastic clip terminating in standard barrel jacks to power Arduinos."],
+  ["MT3608 Boost Module", "Power & Battery", 0, "", "A highly compact step-up board ideal for space-constrained electronics."],
+  ["USB Power Supply Adapter (12V/1A)", "Power & Battery", 0, "", "Standard external wall unit providing continuous stable power."],
+  ["1-Channel Relay Module", "Relays & Motors", 180,"", "Optoisolated 5V trigger safety switch for isolating AC house current."],
+  ["4-Channel Relay Module", "Relays & Motors", 380,"","Expanded relay bank for controlling complex appliance arrays."],
+  ["L298N Dual H-Bridge", "Relays & Motors", 0, "", "Popular, rugged driver module deployed to steer dual DC motors."],
+  ["SG90 Micro Servo", "Relays & Motors", 0, "", "Lightweight 180-degree motor used for steering linkages or latches."],
+  ["MG996R High Torque Servo", "Relays & Motors", 0, "", "Metal-geared servo motor built for high-load robotic joints."],
+  ["ULN2003 Driver with Stepper Motor", "Relays & Motors", 0, "", "Five-wire unipolar driver matched with a 28BYJ-48 stepper motor."],
+  ["A4988 Stepper Driver", "Relays & Motors", 0, "", "Miniature carrier board widely preferred to drive 3D printer motors."],
+  ["PCA9685 PWM Driver", "Relays & Motors", 0, "", "16-channel I2C controller built to orchestrate multiple servos smoothly."],
+  ["5V Submersible Water Pump", "Relays & Motors", 0, "", "Small water pump for desktop automated irrigation builds."],
+  ["L293D Motor Shield", "Relays & Motors", 0, "", "Drop-on expansion shield driving multiple motors directly from an Arduino."],
+  ["HC-05 Bluetooth Module", "Communication", 0, "", "Wireless serial pass-through chip configured for classic Bluetooth pairing."],
+  ["NRF24L01+ Transceiver", "Communication", 0, "", "High-speed 2.4GHz radio board built for custom point-to-point mesh networks."],
+  ["RC522 RFID Module", "Communication", 0, "", "Kit matching high-frequency tags and readers for secure lock access."],
+  ["DS3231 RTC Module", "Communication", 0, "", "Ultra-precise real-time clock backed up by a battery coin-cell."],
+  ["DS1307 RTC Module", "Communication", 0, "", "Basic I2C real-time tracking clock for everyday schedules."],
+  ["SD Card Reader Module", "Communication", 0, "", "SPI carrier board allowing microcontrollers to log data onto flash cards."],
+  ["4x4 Membrane Keypad", "Communication", 0, "", "Flat grid matrix panel used for typing security passwords."],
+  ["MAX485 TTL to RS485", "Communication", 0, "", "Industrial transceiver designed for noise-resistant data runs."],
+  ["CH340G USB-TTL Adapter", "Communication", 0, "", "Serial interface adapter used to reprogram raw microcontrollers."],
+  ["Logic Level Converter", "Communication", 0, "", "Shifter board to safely step 5V signals down to 3.3V IoT logic."],
+  ["ENC28J60 Ethernet Module", "Communication", 0, "", "Physical network port adapter running via an SPI bus."],
+  ["MB102 Breadboard", "Components & Tools", 0, "", "Solderless grid board matching standard component spacing."],
+  ["Jumper Wire Packs (Male-Male / Male-Female)", "Components & Tools", 170,"","Flexible connection lines for linking modules."],
+  ["1/4W Resistor Assortment", "Components & Tools", 0, "", "Bulk carbon-film resistor pack covering common electrical values."],
+  ["BC547 NPN Transistor", "Components & Tools", 0, "", "General-purpose signal switching transistor."],
+  ["1N4007 Rectifier Diode", "Components & Tools", 0, "", "Blocking component protecting circuits against reversed power hooks."],
+  ["IR Receiver & Remote Kit", "Components & Tools", 0, "", "Infrared pairing set deployed for remote-controlled builds."],
+  ["Passive Buzzer", "Components & Tools", 0, "", "Small audio element used for basic alarms and tones."],
+  ["Linear Potentiometer (10k)", "Components & Tools", 0, "", "Adjustable control knob used for tuning or menu scrolling."],
+  ["Tactile Push Buttons", "Components & Tools", 0, "", "Clicky tactile micro-switches for immediate user inputs."],
+  ["CNC Shield V3", "Components & Tools", 0, "", "Extension interface used to build DIY engraving or carving tables."],
+  ["St-Link V2 Programmer", "Components & Tools", 0, "", "Debugging probe used to flash code straight to ARM processors."],
+  ["HX711 Load Cell Amplifier", "Components & Tools", 0, "", "High-resolution converter used to extract data from weight scales."],
+  ["Stripboard / Prototype PCB", "Components & Tools", 0, "", "Perforated fiberglass boards used to solder final designs."],
+];
+// Do not edit below: turns each line above into a product
+const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const products = list.map((r, i) => ({ id: i + 1, name: r[0], cat: r[1], price: r[2] > 0 ? r[2] + MARKUP : 0, image: r[3] || slug(r[0]) + ".png", desc: r[4] || "", seller: SELLER, city: CITY }));
+
+/* ===== 2. SHOP PAGE ===== */
+const $ = s => document.querySelector(s);
+function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
+function pic(p, cls, label) {
+  const d = el("div", cls + " frame");
+  const none = () => { d.replaceChildren(); d.textContent = label || "No image"; };
+  if (p && p.image) {
+    const img = new Image(); img.alt = p.name; img.loading = "lazy";
+    img.onerror = none; img.src = /^https?:/.test(p.image) ? p.image : "images/" + p.image; d.append(img);
+  } else none();
+  return d;
+}
+const rs = n => "Rs " + n.toLocaleString("en-US");
+let cat = "All", query = "";
+
+function drawChips() {
+  const box = $("#chips"); box.replaceChildren();
+  ["All", ...new Set(products.map(p => p.cat))].forEach(c => {
+    const b = el("button", "chip", c);
+    b.setAttribute("aria-pressed", String(c === cat));
+    b.onclick = () => { cat = c; drawChips(); drawGrid(); };
+    box.append(b);
+  });
+}
+function drawGrid() {
+  const grid = $("#grid"); grid.replaceChildren();
+  const list = products.filter(p => (cat === "All" || p.cat === cat) && (p.name + " " + p.desc + " " + p.cat).toLowerCase().includes(query));
+  if (!list.length) grid.append(el("p", "empty", "No products match your search."));
+  list.forEach(p => {
+    const card = el("article", "card");
+    const body = el("div", "body");
+    const priced = p.price > 0;
+    const btn = el("button", priced ? "btn alt" : "btn", priced ? "Chat" : "Ask for price");
+    btn.onclick = () => openThread(p.id);
+    const row = el("div", "row"); row.append(btn);
+    if (priced) {
+      const add = el("button", "btn", "Add to cart");
+      add.onclick = () => { cart[p.id] = (cart[p.id] || 0) + 1; saveCart(); add.textContent = "Added"; setTimeout(() => add.textContent = "Add to cart", 1000); };
+      row.append(add);
+    }
+    body.append(el("span", "cat", p.cat), el("h3", "name", p.name), el("p", "desc", p.desc), el("div", priced ? "price" : "price ask", priced ? rs(p.price) : "Price on request"), el("div", "seller", p.seller + ", " + p.city), row);
+    card.append(pic(p, "tile"), body);
+    grid.append(card);
+  });
+}
+$("#q").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); drawGrid(); });
+
+/* ===== 3. CHAT =====
+   DEMO: messages are saved in this browser only (localStorage).
+   To make chat real between buyers and sellers, replace load() and save()
+   with a database such as Firebase. Ask Claude to help with that step. */
+let chats = {};
+function load() { try { chats = JSON.parse(localStorage.getItem("shopChats") || "{}"); } catch (e) { chats = {}; } }
+function save() { try { localStorage.setItem("shopChats", JSON.stringify(chats)); } catch (e) {} }
+load();
+
+const drawer = $("#drawer"), shade = $("#shade");
+function countBadge() { $("#count").textContent = Object.keys(chats).length; }
+function openDrawer() { drawer.classList.add("open"); shade.classList.add("open"); }
+function closeDrawer() { drawer.classList.remove("open"); shade.classList.remove("open"); }
+shade.onclick = closeDrawer;
+$("#openList").onclick = openList;
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+function info(id) {
+  const p = products.find(x => String(x.id) === String(id));
+  if (p) return { title: p.name, sub: (p.price > 0 ? rs(p.price) + " · " : "") + p.seller, prod: p };
+  return { title: "Order " + new Date(+String(id).slice(6)).toLocaleDateString(), sub: "Order sent to the shop", prod: null };
+}
+
+/* ===== 4. CART AND ORDER ===== */
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("shopCart") || "{}"); } catch (e) { cart = {}; }
+function saveCart() {
+  Object.keys(cart).forEach(k => { if (cart[k] <= 0) delete cart[k]; });
+  try { localStorage.setItem("shopCart", JSON.stringify(cart)); } catch (e) {}
+  $("#cartCount").textContent = Object.values(cart).reduce((a, b) => a + b, 0);
+}
+$("#openCart").onclick = openCart;
+function openCart() {
+  drawer.replaceChildren(head("Your cart", "Review your items and send the order"));
+  const msgs = el("div", "msgs");
+  const items = Object.keys(cart).map(id => ({ p: products.find(x => String(x.id) === id), n: cart[id] })).filter(i => i.p);
+  if (!items.length) { msgs.append(el("p", "hint", "Your cart is empty. Tap “Add to cart” on a product.")); drawer.append(msgs); openDrawer(); return; }
+  let total = 0;
+  items.forEach(({ p, n }) => {
+    total += p.price * n;
+    const line = el("div", "cartline"), nm = el("div", "nm", p.name), q = el("div", "qty");
+    nm.append(el("small", "", rs(p.price) + " each"));
+    const minus = el("button", "", "−"), plus = el("button", "", "+");
+    minus.setAttribute("aria-label", "Remove one"); plus.setAttribute("aria-label", "Add one");
+    minus.onclick = () => { cart[p.id]--; saveCart(); openCart(); };
+    plus.onclick = () => { cart[p.id]++; saveCart(); openCart(); };
+    q.append(minus, el("span", "", n), plus);
+    line.append(pic(p, "thumb"), nm, q); msgs.append(line);
+  });
+  const t = el("div", "total"); t.append(el("span", "", "Total"), el("span", "", rs(total))); msgs.append(t);
+  const form = el("form", "co");
+  const name = el("input"), phone = el("input"), addr = el("input"), go = el("button", "go", "Send order to shop");
+  name.placeholder = "Your name"; phone.placeholder = "Your phone number"; addr.placeholder = "Delivery address and city";
+  [name, phone, addr].forEach(i => i.required = true); phone.type = "tel"; go.type = "submit";
+  form.onsubmit = e => {
+    e.preventDefault();
+    const lines = items.map(({ p, n }, i) => (i + 1) + ". " + p.name + " x" + n + " = " + rs(p.price * n));
+    const text = ["New order", "Name: " + name.value.trim(), "Phone: " + phone.value.trim(), "Address: " + addr.value.trim(), "", ...lines, "", "Total: " + rs(total)].join("\n");
+    const key = "order-" + Date.now();
+    chats[key] = [{ text, time: Date.now() }]; save();
+    cart = {}; saveCart(); countBadge();
+    window.open("https://wa.me/" + OWNER_WHATSAPP + "?text=" + encodeURIComponent(text), "_blank");
+    openThread(key);
+  };
+  form.append(name, phone, addr, go);
+  drawer.append(msgs, form); openDrawer();
+}
+
+function head(title, sub) {
+  const h = el("div", "dhead"), t = el("div", "t"), x = el("button", "x", "×");
+  x.setAttribute("aria-label", "Close chat"); x.onclick = closeDrawer;
+  t.append(el("b", "", title), el("span", "", sub));
+  h.append(t, x); return h;
+}
+function openList() {
+  drawer.replaceChildren(head("Your chats", "Conversations with sellers"));
+  const msgs = el("div", "msgs");
+  const ids = Object.keys(chats);
+  if (!ids.length) msgs.append(el("p", "hint", "No chats yet. Tap “Chat with seller” on any product."));
+  ids.forEach(id => {
+    const p = info(id);
+    const last = chats[id][chats[id].length - 1];
+    const b = el("button", "convo"), box = el("div");
+    b.onclick = () => openThread(id);
+    box.append(el("b", "", p.title), el("small", "", last ? last.text.replace(/\n/g, " ") : "No messages yet"));
+    b.append(pic(p.prod, "thumb", "Order"), box); msgs.append(b);
+  });
+  drawer.append(msgs); openDrawer();
+}
+function openThread(id) {
+  const p = info(id);
+  if (!chats[id]) { chats[id] = []; save(); countBadge(); }
+  drawer.replaceChildren(head(p.title, p.sub));
+  drawer.append(el("div", "notice", "Demo chat: messages are saved only in this browser. Orders go to the shop on WhatsApp."));
+  const msgs = el("div", "msgs");
+  if (!chats[id].length) msgs.append(el("p", "hint", "Say hello to the seller. Ask if it is in stock or if the price is negotiable."));
+  chats[id].forEach(m => { const d = el("div", "msg", m.text); d.style.whiteSpace = "pre-wrap"; msgs.append(d); });
+  const form = el("form", "send"), input = el("input"), go = el("button", "", "Send");
+  input.placeholder = "Type a message"; input.setAttribute("aria-label", "Message"); go.type = "submit";
+  form.onsubmit = e => {
+    e.preventDefault();
+    const text = input.value.trim(); if (!text) return;
+    chats[id].push({ text, time: Date.now() }); save(); openThread(id);
+  };
+  form.append(input, go);
+  drawer.append(msgs, form); openDrawer();
+  msgs.scrollTop = msgs.scrollHeight;
+  $("#drawer .send input").focus();
+}
+
+drawChips(); drawGrid(); countBadge(); saveCart();
+</script>
+</body>
+</html>
