@@ -425,7 +425,7 @@
       "id": 54,
       "name": "5mm RGB LED",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 20,
       "image": "5mm-rgb-led.png",
       "desc": "Through-hole color LED featuring shared anode or cathode leads."
     },
