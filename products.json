@@ -201,7 +201,7 @@
       "id": 25,
       "name": "Raindrop Sensor Board",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 160,
       "image": "raindrop-sensor-board.png",
       "desc": "Grid-style sensor that registers falling water droplets."
     },
