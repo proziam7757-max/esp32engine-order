@@ -601,7 +601,7 @@
       "id": 75,
       "name": "NRF24L01+ Transceiver",
       "cat": "Communication",
-      "price": 0,
+      "price": 200,
       "image": "nrf24l01-transceiver.png",
       "desc": "High-speed 2.4GHz radio board built for custom point-to-point mesh networks."
     },
