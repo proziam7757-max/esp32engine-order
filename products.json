@@ -254,14 +254,6 @@
       "desc": "Solid-state capacitive touch button module."
     },
     {
-      "id": 32,
-      "name": "RCW-0006",
-      "cat": "Motion & Distance",
-      "price": 0,
-      "image": "rcw-0006.png",
-      "desc": "A compact alternative ultrasonic sensor built for low-voltage circuits."
-    },
-    {
       "id": 33,
       "name": "RCWL-0516",
       "cat": "Motion & Distance",
