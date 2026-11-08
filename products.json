@@ -489,7 +489,7 @@
       "id": 62,
       "name": "MT3608 Boost Module",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 110,
       "image": "mt3608-boost-module.png",
       "desc": "A highly compact step-up board ideal for space-constrained electronics."
     },
