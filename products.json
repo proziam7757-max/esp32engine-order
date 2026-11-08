@@ -649,7 +649,7 @@
       "id": 81,
       "name": "MAX485 TTL to RS485",
       "cat": "Communication",
-      "price": 0,
+      "price": 120,
       "image": "max485-ttl-to-rs485.png",
       "desc": "Industrial transceiver designed for noise-resistant data runs."
     },
