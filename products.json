@@ -113,7 +113,7 @@
       "id": 14,
       "name": "ATtiny85",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 600,
       "image": "attiny85.png",
       "desc": "An ultra-small, inexpensive 8-pin microcontroller for minimalist devices."
     },
