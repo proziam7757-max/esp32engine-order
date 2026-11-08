@@ -231,9 +231,9 @@
     },
     {
       "id": 29,
-      "name": "MPU6050",
+      "name": "GY521 MPU6050 3 Axis Digital Gyroscope Accelerometer Sensor Module",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 390,
       "image": "mpu6050.png",
       "desc": "6-axis system delivering integrated accelerometer and gyroscope orientation tracking."
     },
