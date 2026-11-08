@@ -401,7 +401,7 @@
       "id": 51,
       "name": "WS2812B NeoPixel Strip",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 7060,
       "image": "ws2812b-neopixel-strip.png",
       "desc": "Digitally addressable RGB LED lights controlled via a single wire pin."
     },
