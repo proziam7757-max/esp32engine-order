@@ -225,7 +225,7 @@
       "id": 28,
       "name": "HC-SR501 PIR",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 210,
       "image": "hc-sr501-pir.png",
       "desc": "Infrared motion-detection sensor tailored to detect humans or animals."
     },
