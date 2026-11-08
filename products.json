@@ -129,7 +129,7 @@
       "id": 16,
       "name": "DHT22",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 1400,
       "image": "dht22.png",
       "desc": "A higher-precision drop-in alternative to the DHT11."
     },
