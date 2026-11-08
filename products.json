@@ -177,7 +177,7 @@
       "id": 22,
       "name": "MQ-7",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 360,
       "image": "mq-7.png",
       "desc": "Specialized electrochemical module tuned to look for dangerous carbon monoxide leaks."
     },
