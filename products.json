@@ -49,7 +49,7 @@
       "id": 6,
       "name": "STM32 \"Blue Pill\" (STM32F103C8T6)",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 760,
       "image": "stm32-blue-pill-stm32f103c8t6.png",
       "desc": "A fast 32-bit ARM processor widely preferred for advanced real-time automation."
     },
