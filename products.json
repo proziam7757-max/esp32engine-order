@@ -305,7 +305,7 @@
       "id": 39,
       "name": "LDR (Light Dependent Resistor)",
       "cat": "Light, Sound & Biometric",
-      "price": 0,
+      "price": 160,
       "image": "ldr-light-dependent-resistor.png",
       "desc": "Photoresistor used to check for basic ambient daylight."
     },
