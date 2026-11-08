@@ -209,7 +209,7 @@
       "id": 26,
       "name": "NTC Thermistor",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 130,
       "image": "ntc-thermistor.png",
       "desc": "Small thermal resistor used for simple heat thresholds."
     },
