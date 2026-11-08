@@ -65,7 +65,7 @@
       "id": 8,
       "name": "Arduino Leonardo",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 1570,
       "image": "arduino-leonardo.png",
       "desc": "An ATmega32u4 board that natively emulates a USB keyboard or mouse."
     },
