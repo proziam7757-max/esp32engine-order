@@ -241,7 +241,7 @@
       "id": 30,
       "name": "IR Obstacle Avoidance Module",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 120,
       "image": "ir-obstacle-avoidance-module.png",
       "desc": "Emits and detects infrared light to catch immediate obstacles."
     },
