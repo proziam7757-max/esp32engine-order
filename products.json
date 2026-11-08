@@ -657,7 +657,7 @@
       "id": 82,
       "name": "CH340G USB-TTL Adapter",
       "cat": "Communication",
-      "price": 0,
+      "price": 200,
       "image": "ch340g-usb-ttl-adapter.png",
       "desc": "Serial interface adapter used to reprogram raw microcontrollers."
     },
