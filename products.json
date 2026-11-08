@@ -673,7 +673,7 @@
       "id": 84,
       "name": "ENC28J60 Ethernet Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 1000,
       "image": "enc28j60-ethernet-module.png",
       "desc": "Physical network port adapter running via an SPI bus."
     },
