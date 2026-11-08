@@ -321,7 +321,7 @@
       "id": 41,
       "name": "Sound Detector Module",
       "cat": "Light, Sound & Biometric",
-      "price": 0,
+      "price": 130,
       "image": "sound-detector-module.png",
       "desc": "Onboard microphone linked to an op-amp for sound threshold detection."
     },
