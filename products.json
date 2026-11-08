@@ -417,7 +417,7 @@
       "id": 53,
       "name": "16x2 Character LCD",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 330,
       "image": "16x2-character-lcd.png",
       "desc": "Standalone alphanumeric text module."
     },
