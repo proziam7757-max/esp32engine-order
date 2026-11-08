@@ -761,7 +761,7 @@
       "id": 95,
       "name": "St-Link V2 Programmer",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 550,
       "image": "st-link-v2-programmer.png",
       "desc": "Debugging probe used to flash code straight to ARM processors."
     },
