@@ -289,7 +289,7 @@
       "id": 37,
       "name": "Photoelectric Proximity Switch",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 1060,
       "image": "photoelectric-proximity-switch.png",
       "desc": "Industrial-style beam sensor utilized to track passing machinery."
     },
