@@ -161,7 +161,7 @@
       "id": 20,
       "name": "LM35",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 260,
       "image": "lm35.png",
       "desc": "An analog linear temperature sensor."
     },
