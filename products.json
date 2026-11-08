@@ -567,9 +567,9 @@
     },
     {
       "id": 71,
-      "name": "PCA9685 PWM Driver",
+      "name": "PCA9685 PWM Driver 16channel",
       "cat": "Relays & Motors",
-      "price": 0,
+      "price": 760,
       "image": "pca9685-pwm-driver.png",
       "desc": "16-channel I2C controller built to orchestrate multiple servos smoothly."
     },
