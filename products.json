@@ -185,7 +185,7 @@
       "id": 23,
       "name": "MQ-135",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 310,
       "image": "mq-135.png",
       "desc": "Air quality sensor responding to benzene, alcohol, and generic smoke pollution."
     },
