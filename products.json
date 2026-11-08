@@ -169,7 +169,7 @@
       "id": 21,
       "name": "MQ-2",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 260,
       "image": "mq-2.png",
       "desc": "Gas sensor module calibrated for methane, butane, LPG, and smoke."
     },
