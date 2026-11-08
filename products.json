@@ -756,14 +756,6 @@
       "price": 170,
       "image": "hx711-load-cell-amplifier.png",
       "desc": "High-resolution converter used to extract data from weight scales."
-    },
-    {
-      "id": 97,
-      "name": "Ziam",
-      "cat": "Environmental Sensors",
-      "price": 15999999999900,
-      "image": "ziam.png",
-      "desc": "Human to do all your work"
     }
   ]
 }
