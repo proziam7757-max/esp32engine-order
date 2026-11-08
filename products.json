@@ -711,9 +711,9 @@
     },
     {
       "id": 89,
-      "name": "1N4007 Rectifier Diode",
+      "name": "1N4007 Rectifier Diode (quantity 10)",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 100,
       "image": "1n4007-rectifier-diode.png",
       "desc": "Blocking component protecting circuits against reversed power hooks."
     },
