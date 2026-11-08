@@ -81,7 +81,7 @@
       "id": 10,
       "name": "Teensy 4.1",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 12100,
       "image": "teensy-4-1.png",
       "desc": "A high-speed microcontroller used for heavy data or audio calculations."
     },
