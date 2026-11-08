@@ -505,7 +505,7 @@
       "id": 63,
       "name": "USB Power Supply Adapter (12V/1A)",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 250,
       "image": "usb-power-supply-adapter-12v-1a.png",
       "desc": "Standard external wall unit providing continuous stable power."
     },
