@@ -137,7 +137,7 @@
       "id": 17,
       "name": "BMP280",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 160,
       "image": "bmp280.png",
       "desc": "A barometric pressure and temperature sensor (the BME280's sibling without a humidity reader)."
     },
