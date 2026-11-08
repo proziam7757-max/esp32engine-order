@@ -337,7 +337,7 @@
       "id": 43,
       "name": "TCS3200 Color Sensor",
       "cat": "Light, Sound & Biometric",
-      "price": 0,
+      "price": 1470,
       "image": "tcs3200-color-sensor.png",
       "desc": "Direct color-matching array outputting corresponding square wave frequencies."
     },
