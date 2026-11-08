@@ -457,7 +457,7 @@
       "id": 58,
       "name": "XL6009 Boost Converter",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 340,
       "image": "xl6009-boost-converter.png",
       "desc": "Step-up voltage module used to scale lower inputs higher."
     },
