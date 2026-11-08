@@ -353,7 +353,7 @@
       "id": 45,
       "name": "0.96-inch OLED (SSD1306)",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 500,
       "image": "0-96-inch-oled-ssd1306.png",
       "desc": "Crisp, compact screen utilizing an I2C connection to map graphics."
     },
