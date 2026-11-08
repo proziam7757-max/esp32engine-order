@@ -553,7 +553,7 @@
       "id": 69,
       "name": "ULN2003 Driver with Stepper Motor",
       "cat": "Relays & Motors",
-      "price": 0,
+      "price": 460,
       "image": "uln2003-driver-with-stepper-motor.png",
       "desc": "Five-wire unipolar driver matched with a 28BYJ-48 stepper motor."
     },
