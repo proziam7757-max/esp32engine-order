@@ -729,7 +729,7 @@
       "id": 91,
       "name": "Passive Buzzer",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 50,
       "image": "passive-buzzer.png",
       "desc": "Small audio element used for basic alarms and tones."
     },
