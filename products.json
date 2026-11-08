@@ -743,9 +743,9 @@
     },
     {
       "id": 93,
-      "name": "Tactile Push Buttons",
+      "name": "10 Tactile Push Buttons",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 100,
       "image": "tactile-push-buttons.png",
       "desc": "Clicky tactile micro-switches for immediate user inputs."
     },
