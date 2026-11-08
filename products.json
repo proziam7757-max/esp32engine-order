@@ -23,9 +23,9 @@
     },
     {
       "id": 3,
-      "name": "NodeMCU V3 (ESP8266)",
+      "name": "ESP8266",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 700,
       "image": "nodemcu-v3-esp8266.png",
       "desc": "An affordable, older Wi-Fi-enabled board perfect for simpler IoT builds."
     },
