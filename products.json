@@ -473,7 +473,7 @@
       "id": 60,
       "name": "18650 Battery Shield",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 710,
       "image": "18650-battery-shield.png",
       "desc": "Expansion dock converting battery power into standard 5V and 3.3V header breakouts."
     },
