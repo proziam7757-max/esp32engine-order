@@ -41,7 +41,7 @@
       "id": 5,
       "name": "ESP32-CAM",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 1520,
       "image": "esp32-cam.png",
       "desc": "A tiny variant combining an ESP32 microchip with an OV2640 camera lens."
     },
