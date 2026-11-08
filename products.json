@@ -97,7 +97,7 @@
       "id": 12,
       "name": "ESP32-C3 DevKit",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 1100,
       "image": "esp32-c3-devkit.png",
       "desc": "RISC-V-based single-core Wi-Fi/Bluetooth board."
     },
