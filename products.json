@@ -217,7 +217,7 @@
       "id": 27,
       "name": "HC-SR04",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 210,
       "image": "hc-sr04.png",
       "desc": "Ubiquitous ultrasonic transducer used to measure distance via sound echoes."
     },
