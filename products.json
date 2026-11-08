@@ -369,7 +369,7 @@
       "id": 47,
       "name": "TM1637 4-Digit Display",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 210,
       "image": "tm1637-4-digit-display.png",
       "desc": "Segmented LED clock display module that saves pins via a custom 2-wire setup."
     },
