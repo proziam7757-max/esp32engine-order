@@ -193,7 +193,7 @@
       "id": 24,
       "name": "Soil Moisture Sensor",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 130,
       "image": "soil-moisture-sensor.png",
       "desc": "Two-pronged resistive probe deployed to trigger automated watering valves."
     },
