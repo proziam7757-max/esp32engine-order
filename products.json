@@ -329,7 +329,7 @@
       "id": 42,
       "name": "MAX30102",
       "cat": "Light, Sound & Biometric",
-      "price": 0,
+      "price": 460,
       "image": "max30102.png",
       "desc": "High-sensitivity biometric sensor measuring pulse rate and blood oxygen levels."
     },
