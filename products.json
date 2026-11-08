@@ -753,7 +753,7 @@
       "id": 94,
       "name": "CNC Shield V3",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 360,
       "image": "cnc-shield-v3.png",
       "desc": "Extension interface used to build DIY engraving or carving tables."
     },
