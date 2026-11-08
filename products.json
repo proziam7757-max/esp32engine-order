@@ -297,7 +297,7 @@
       "id": 38,
       "name": "Flame Sensor Module",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 160,
       "image": "flame-sensor-module.png",
       "desc": "Specialized photodiode sensitive to infrared wavelengths found in open flames."
     },
