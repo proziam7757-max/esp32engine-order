@@ -121,7 +121,7 @@
       "id": 15,
       "name": "DHT11",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 260,
       "image": "dht11.png",
       "desc": "Common, budget-friendly digital temperature and humidity sensor."
     },
