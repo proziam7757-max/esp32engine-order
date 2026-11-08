@@ -703,9 +703,9 @@
     },
     {
       "id": 88,
-      "name": "BC547 NPN Transistor",
+      "name": "BC547 NPN Transistor (quantity 10)",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 100,
       "image": "bc547-npn-transistor.png",
       "desc": "General-purpose signal switching transistor."
     },
