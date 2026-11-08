@@ -561,7 +561,7 @@
       "id": 70,
       "name": "A4988 Stepper Driver",
       "cat": "Relays & Motors",
-      "price": 0,
+      "price": 310,
       "image": "a4988-stepper-driver.png",
       "desc": "Miniature carrier board widely preferred to drive 3D printer motors."
     },
