@@ -609,7 +609,7 @@
       "id": 76,
       "name": "RC522 RFID Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 310,
       "image": "rc522-rfid-module.png",
       "desc": "Kit matching high-frequency tags and readers for secure lock access."
     },
