@@ -625,7 +625,7 @@
       "id": 78,
       "name": "DS1307 RTC Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 164,
       "image": "ds1307-rtc-module.png",
       "desc": "Basic I2C real-time tracking clock for everyday schedules."
     },
