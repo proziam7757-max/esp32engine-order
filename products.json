@@ -73,7 +73,7 @@
       "id": 9,
       "name": "Wemos D1 Mini",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 600,
       "image": "wemos-d1-mini.png",
       "desc": "A pocket-sized ESP8266 development platform."
     },
