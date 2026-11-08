@@ -641,7 +641,7 @@
       "id": 80,
       "name": "4x4 Membrane Keypad",
       "cat": "Communication",
-      "price": 0,
+      "price": 130,
       "image": "4x4-membrane-keypad.png",
       "desc": "Flat grid matrix panel used for typing security passwords."
     },
