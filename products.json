@@ -145,7 +145,7 @@
       "id": 18,
       "name": "BME680",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 2020,
       "image": "bme680.png",
       "desc": "A high-end relative of the BME280 that includes gas and indoor air quality tracking."
     },
