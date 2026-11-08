@@ -585,7 +585,7 @@
       "id": 73,
       "name": "L293D Motor Shield",
       "cat": "Relays & Motors",
-      "price": 0,
+      "price": 410,
       "image": "l293d-motor-shield.png",
       "desc": "Drop-on expansion shield driving multiple motors directly from an Arduino."
     },
