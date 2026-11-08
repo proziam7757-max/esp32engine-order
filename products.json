@@ -593,7 +593,7 @@
       "id": 74,
       "name": "HC-05 Bluetooth Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 760,
       "image": "hc-05-bluetooth-module.png",
       "desc": "Wireless serial pass-through chip configured for classic Bluetooth pairing."
     },
