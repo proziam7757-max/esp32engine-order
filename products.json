@@ -249,7 +249,7 @@
       "id": 31,
       "name": "TTP223",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 40,
       "image": "ttp223.png",
       "desc": "Solid-state capacitive touch button module."
     },
