@@ -33,7 +33,7 @@
       "id": 4,
       "name": "Raspberry Pi Pico W",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 3200,
       "image": "raspberry-pi-pico-w.png",
       "desc": "Dual-core ARM Cortex-M0+ board featuring onboard Wi-Fi."
     },
