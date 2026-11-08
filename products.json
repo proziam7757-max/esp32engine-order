@@ -772,14 +772,6 @@
       "price": 0,
       "image": "hx711-load-cell-amplifier.png",
       "desc": "High-resolution converter used to extract data from weight scales."
-    },
-    {
-      "id": 97,
-      "name": "Stripboard / Prototype PCB",
-      "cat": "Components & Tools",
-      "price": 0,
-      "image": "stripboard-prototype-pcb.png",
-      "desc": "Perforated fiberglass boards used to solder final designs."
     }
   ]
 }
