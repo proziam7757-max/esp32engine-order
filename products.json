@@ -17,7 +17,7 @@
       "id": 2,
       "name": "Arduino Mega 2560 R3",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 3600,
       "image": "arduino-mega-2560-r3.png",
       "desc": "Features extra GPIO pins and hardware serial ports for heavy-duty setups."
     },
