@@ -617,7 +617,7 @@
       "id": 77,
       "name": "DS3231 RTC Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 550,
       "image": "ds3231-rtc-module.png",
       "desc": "Ultra-precise real-time clock backed up by a battery coin-cell."
     },
