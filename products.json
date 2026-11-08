@@ -265,7 +265,7 @@
       "id": 34,
       "name": "Vibration Sensor (SW-420)",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 130,
       "image": "vibration-sensor-sw-420.png",
       "desc": "Spring-based switch that outputs a trigger pulse when bumped."
     },
