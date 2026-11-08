@@ -769,7 +769,7 @@
       "id": 96,
       "name": "HX711 Load Cell Amplifier",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 170,
       "image": "hx711-load-cell-amplifier.png",
       "desc": "High-resolution converter used to extract data from weight scales."
     },
