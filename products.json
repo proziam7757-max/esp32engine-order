@@ -465,7 +465,7 @@
       "id": 59,
       "name": "AMS1117 3.3V Regulator",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 20,
       "image": "ams1117-3-3v-regulator.png",
       "desc": "Small SMD power chip dropping 5V feeds down to safe 3.3V IoT logic rails."
     },
