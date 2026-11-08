@@ -377,7 +377,7 @@
       "id": 48,
       "name": "MAX7219 8x8 LED Matrix",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 460,
       "image": "max7219-8x8-led-matrix.png",
       "desc": "Cascading dot display framework widely scaled for retro tickertapes."
     },
