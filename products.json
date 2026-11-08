@@ -310,14 +310,6 @@
       "desc": "Photoresistor used to check for basic ambient daylight."
     },
     {
-      "id": 40,
-      "name": "BH1750",
-      "cat": "Light, Sound & Biometric",
-      "price": 0,
-      "image": "bh1750.png",
-      "desc": "Digital ambient light level sensor providing accurate lux measurements over I2C."
-    },
-    {
       "id": 41,
       "name": "Sound Detector Module",
       "cat": "Light, Sound & Biometric",
