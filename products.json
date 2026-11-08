@@ -345,7 +345,7 @@
       "id": 44,
       "name": "KY-038 Microphone",
       "cat": "Light, Sound & Biometric",
-      "price": 0,
+      "price": 110,
       "image": "ky-038-microphone.png",
       "desc": "Small audio module for clap-switches and basic loud sound triggers."
     },
