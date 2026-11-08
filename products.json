@@ -737,7 +737,7 @@
       "id": 92,
       "name": "Linear Potentiometer (10k)",
       "cat": "Components & Tools",
-      "price": 0,
+      "price": 50,
       "image": "linear-potentiometer-10k.png",
       "desc": "Adjustable control knob used for tuning or menu scrolling."
     },
