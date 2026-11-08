@@ -105,7 +105,7 @@
       "id": 13,
       "name": "ATmega328P-PU IC",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 800,
       "image": "atmega328p-pu-ic.png",
       "desc": "The bare microcontroller chip used to build custom DIY circuit footprints."
     },
