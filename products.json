@@ -529,7 +529,7 @@
       "id": 66,
       "name": "L298N Dual H-Bridge",
       "cat": "Relays & Motors",
-      "price": 0,
+      "price": 410,
       "image": "l298n-dual-h-bridge.png",
       "desc": "Popular, rugged driver module deployed to steer dual DC motors."
     },
