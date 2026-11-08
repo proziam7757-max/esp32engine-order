@@ -281,7 +281,7 @@
       "id": 36,
       "name": "Tilt Ball Switch",
       "cat": "Motion & Distance",
-      "price": 0,
+      "price": 70,
       "image": "tilt-ball-switch.png",
       "desc": "Simple capsule enclosing a rolling metal ball to indicate orientation flips."
     },
