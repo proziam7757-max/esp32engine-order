@@ -633,7 +633,7 @@
       "id": 79,
       "name": "SD Card Reader Module",
       "cat": "Communication",
-      "price": 0,
+      "price": 160,
       "image": "sd-card-reader-module.png",
       "desc": "SPI carrier board allowing microcontrollers to log data onto flash cards."
     },
