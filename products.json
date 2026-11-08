@@ -153,7 +153,7 @@
       "id": 19,
       "name": "DS18B20 Probe",
       "cat": "Environmental Sensors",
-      "price": 0,
+      "price": 290,
       "image": "ds18b20-probe.png",
       "desc": "A sealed, waterproof digital temperature probe perfect for liquids."
     },
