@@ -55,9 +55,9 @@
     },
     {
       "id": 7,
-      "name": "Arduino Pro Mini",
+      "name": "Arduino Pro Mini 5v",
       "cat": "Microcontrollers",
-      "price": 0,
+      "price": 660,
       "image": "arduino-pro-mini.png",
       "desc": "A highly compact, stripped-down Arduino format engineered for low-profile enclosures."
     },
