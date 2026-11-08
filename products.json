@@ -665,7 +665,7 @@
       "id": 83,
       "name": "Logic Level Converter",
       "cat": "Communication",
-      "price": 0,
+      "price": 60,
       "image": "logic-level-converter.png",
       "desc": "Shifter board to safely step 5V signals down to 3.3V IoT logic."
     },
