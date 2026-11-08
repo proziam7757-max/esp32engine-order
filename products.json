@@ -449,7 +449,7 @@
       "id": 57,
       "name": "LM2596 Buck Converter",
       "cat": "Power & Battery",
-      "price": 0,
+      "price": 360,
       "image": "lm2596-buck-converter.png",
       "desc": "Efficient step-down voltage regulator featuring an adjustment dial."
     },
