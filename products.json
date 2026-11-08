@@ -361,7 +361,7 @@
       "id": 46,
       "name": "LCD 1602 (With I2C Backpack)",
       "cat": "Displays & LEDs",
-      "price": 0,
+      "price": 200,
       "image": "lcd-1602-with-i2c-backpack.png",
       "desc": "Industry-standard text layout offering 2 lines of 16 characters each."
     },
