@@ -2,7 +2,7 @@
   "settings": {
     "seller": "esp32engine",
     "city": "Multan",
-    "markup": 100
+    "markup": 0
   },
   "products": [
     {
