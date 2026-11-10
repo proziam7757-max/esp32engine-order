@@ -4,5 +4,14 @@
     "city": "Multan",
     "markup": 100
   },
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "esp32 classic",
+      "cat": "microcontroller",
+      "price": 1150,
+      "image": "esp32-classic.png",
+      "desc": "a low-cost, low-power system-on-a-chip (SoC) microcontroller with integrated 2.4 GHz Wi-Fi and dual-mode Bluetooth (Classic and BLE)"
+    }
+  ]
 }
