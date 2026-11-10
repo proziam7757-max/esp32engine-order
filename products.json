@@ -748,14 +748,6 @@
       "price": 550,
       "image": "st-link-v2-programmer.png",
       "desc": "Debugging probe used to flash code straight to ARM processors."
-    },
-    {
-      "id": 96,
-      "name": "HX711 Load Cell Amplifier",
-      "cat": "Components & Tools",
-      "price": 170,
-      "image": "hx711-load-cell-amplifier.png",
-      "desc": "High-resolution converter used to extract data from weight scales."
     }
   ]
 }
