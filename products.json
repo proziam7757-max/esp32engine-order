@@ -28,6 +28,14 @@
       "price": 60,
       "image": "led-5mm-mix-colors-pack-of-25-pcs.png",
       "desc": "is the industry-standard through-hole light-emitting diode featuring a 5-millimeter round epoxy lens package"
+    },
+    {
+      "id": 4,
+      "name": "150pcs Resistor Pack Of 15 Values 10R,47R,100R,220R,330R,470R,1k,2.2k,4.7k,6.8k,10k,22k,47k,100k,220k",
+      "cat": "resisters",
+      "price": 230,
+      "image": "150pcs-resistor-pack-of-15-values-10r-47r-100r-220r-330r-470r-1k-2-2k-4-7k-6-8k-10k-22k-47k-100k-220k.png",
+      "desc": "a passive two-terminal electronic component that implements electrical resistance to limit current flow, divide voltages, or dissipate power as heat"
     }
   ]
 }
